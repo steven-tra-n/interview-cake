@@ -1,4 +1,4 @@
-def merge_range(meetings):
+def merge_meetings(meetings):
     # 1. Sort meetings
     # 2. Append first meeting
     # 3. Loop through and compare meeting end time with previous meeting start time
@@ -32,4 +32,4 @@ def merge_range(meetings):
 meetings = [(0, 1), (3, 5), (4, 8), (10, 12), (9, 10)]
 # meetings = [(1, 10), (2, 6), (3, 5), (7, 9)]
 
-merge_range(meetings)
+merge_meetings(meetings)
