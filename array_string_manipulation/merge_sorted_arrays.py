@@ -28,6 +28,6 @@ def add_to_result(input, index, result):
     return index
 
 my_list     = [3, 4, 6, 10, 11, 15]
-alices_list = [1, 5, 8, 12, 14, 19]
+alices_list = [1,]
 
 merge_sorted_arrays(my_list, alices_list)
