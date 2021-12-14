@@ -6,23 +6,21 @@ def merge_sorted_arrays(input, input2):
     # 1.
     input_index = 0
     input2_index = 0
+    result_index = 0
 
     result = []
 
-    while input_index < len(input) or input2_index < len(input2):
+    while result_index < len(input) + len(input2):
         input_exhausted = input_index >= len(input)
         input2_exhausted = input2_index >= len(input2)
 
         # 2.
-        if input_exhausted:
-            input2_index = add_to_result(input2, input2_index, result)
-        elif input2_exhausted:
-            input_index = add_to_result(input, input_index, result)
-        elif input[input_index] < input2[input2_index]:
+        if not input_exhausted and (input2_exhausted or input[input_index] < input2[input2_index]):
             input_index = add_to_result(input, input_index, result)
         else:
             input2_index = add_to_result(input2, input2_index, result)
 
+        result_index += 1
     
     print(result)
     
