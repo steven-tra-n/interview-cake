@@ -36,24 +36,36 @@ def highest_product_of_3(numbers):
     # 1. Keep track of the largest and smallest (for negatives) products of 2
     # 2. Start off with the first 2, then iterate through the rest of the array
     # 3. Start iterating with the third element. Multiply it with the highest 2 and lowest 2
+    # 4. See if we have a new highest 2 or lowest 2
+    # 5. See if we have a new highest or lowest
 
     if(len(numbers) < 3):
         raise ValueError('Need at least 3 numbers.')
 
     # 2.
-    highest = numbers[0]
-    lowest = numbers[0]
+    highest = max(numbers[0], numbers[1])
+    lowest = min(numbers[0], numbers[1])
     highest_product_of_2 = numbers[0] * numbers[1]
     lowest_product_of_2 = numbers[0] * numbers[1]
 
     highest_product_of_3 = numbers[0] * numbers[1] * numbers[2]
 
+    # 3.
     for number in numbers[3:]:
-        highest_product_of_3 = max(highest_product_of_3, highest_product_of_2 * number)
+        highest_product_of_3 = max(highest_product_of_3,
+                                    highest_product_of_2 * number,
+                                    lowest_product_of_2 * number)
 
-        highest_product_of_2 = max(highest_product_of_2, highest * number)
-        lowest_product_of_2 = min(lowest_product_of_2, lowest * number)
+        # 4.
+        highest_product_of_2 = max(highest_product_of_2, 
+                                    highest * number,
+                                    lowest * number)
 
+        lowest_product_of_2 = min(lowest_product_of_2, 
+                                    lowest * number,
+                                    highest * number)
+
+        # 5.
         highest = max(highest, number)
         lowest = min(lowest, number)
 
