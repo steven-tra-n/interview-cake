@@ -42,22 +42,44 @@ def product_of_all_other_numbers(numbers):
 
     # End two list solution
 
-    print(numbers)
+    # 1. Create an array storing all products before the index
+    # 2. Traverse the numbers array in reverse and multiply it with the array from 1.
+
+    if len(numbers) < 2:
+        raise IndexError('Need at least 2 numbers')
+
+    result = [None] * len(numbers)
+    product_so_far = 1
+
+    # 1.
+    for i in range(len(numbers)):
+        result[i] = product_so_far
+        product_so_far *= numbers[i]
+
+    # Reset
+    product_so_far = 1
+
+    # 2.
+    for i in range(len(numbers) - 1, -1, -1):
+        result[i] = product_so_far * result[i]
+        product_so_far *= numbers[i]
+
+    print(result)
 
 
 
-def populate_array(array, numbers):
-    previous_number = 1
+# def populate_array(array, numbers):
+#     previous_number = 1
 
-    for index, number in enumerate(numbers):
-        if index == 0:
-            array.append(previous_number)
-        else:
-            array.append(array[index - 1] * previous_number)
+#     for index, number in enumerate(numbers):
+#         if index == 0:
+#             array.append(previous_number)
+#         else:
+#             array.append(array[index - 1] * previous_number)
 
-        previous_number = number
+#         previous_number = number
 
-    return array
+#     return array
 
 numbers = [3, 1, 2, 5, 6, 4]
 
