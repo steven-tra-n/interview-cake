@@ -33,21 +33,24 @@ def find_rotation_point(words):
     # 1. Utilize a modified binary search
     # 2. When the word in the middle is less than the first word, the rotated point is in the second half
     # 3. Else, rotated part is in the first half
+    # 4. Array is not even rotated
 
     left = 0
     right = len(words) - 1
-    mid = left + (right - left) // 2
-    first_word = words[0]
 
     while left < right:
-        if words[mid] < first_word: # 2.
-            left = mid + 1
-        else: # 3.
-            right = mid - 1
-
         mid = left + (right - left) // 2
 
-    return 'False'
+        if words[mid] < words[left]: # 2.
+            right = mid
+        else: # 3.
+            left = mid + 1
+
+    # 4.
+    if right == len(words) - 1:
+        return 0
+    else: 
+        return right
 
 words = [
     'ptolemaic',
