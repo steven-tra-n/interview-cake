@@ -34,9 +34,11 @@ def binary_search_tree(root):
     # 3. If the node value is lower than the lower bound or higher than upper bound, return false
     # 4. If the node has children, append them
 
+    # 0.
     if not root:
         return True
 
+    # 1.
     nodes_and_bounds = [(root, -float('inf'), float('inf'))]
 
     while nodes_and_bounds:
