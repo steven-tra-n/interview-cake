@@ -34,7 +34,7 @@ class nth_fibonacci_memoized:
         previous = 0
         current = 1
 
-        for _ in range(n):
+        for _ in range(n - 1):
             temp = current
             current = previous + current
             previous = temp
