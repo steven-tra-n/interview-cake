@@ -1,31 +1,44 @@
-def making_change(amount, denominations, current_index = 0):
-    # Base cases
-    # Perfect match
-    if amount == 0:
-        return 1
+class Tupac:
+    def __init__(self):
+        self.memo = {}
 
-    # Too much coin
-    if amount < 0:
-        return 0
+    def making_change(self, amount, denominations, current_index = 0):
+        # Base cases
+        # Perfect match
+        if amount == 0:
+            return 1
 
-    # Ran out of coin
-    if current_index == len(denominations):
-        return 0
+        # Too much coin
+        if amount < 0:
+            return 0
 
-    print('Checking ways to make %i with %s' % (amount, denominations[current_index:]))
+        # Ran out of coin
+        if current_index == len(denominations):
+            return 0
 
-    current_coin = denominations[current_index]
+        memo_key = str((amount, current_index))
 
-    # See how many possibilities exist for each number of times
-    possibilities = 0
+        if memo_key in self.memo:
+            print('I see no changes for:', amount, current_index)
+            return self.memo[memo_key]
 
-    while amount >= 0:
-        possibilities += making_change(amount, denominations, current_index + 1)
-        amount -= current_coin
+        print('Checking ways to make %i with %s' % (amount, denominations[current_index:]))
 
-    return possibilities
+        current_coin = denominations[current_index]
+
+        # See how many possibilities exist for each number of times
+        possibilities = 0
+
+        while amount >= 0:
+            possibilities += self.making_change(amount, denominations, current_index + 1)
+            amount -= current_coin
+
+        self.memo[memo_key] = possibilities
+        return possibilities
 
 amount = 4
 denominations = [1, 2, 3]
 
-print(making_change(amount, denominations))
+shakur = Tupac()
+
+print(shakur.making_change(amount, denominations))
