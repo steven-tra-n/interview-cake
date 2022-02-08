@@ -63,10 +63,33 @@ def reverse_characters(input, start, end):
         start += 1
         end -= 1
 
+def scratch(input):
+    words = []
+    temp = ''
+    result = ''
+
+    for char in input:
+        if char == ' ':
+            words.append(temp)
+            temp = ''
+        else:
+            temp += char
+
+    words.append(temp)
+
+    for word in words:
+        for char in word:
+            result += char
+        result += ' '
+
+    result = result[:-1]
+    print(result)
+
 input = [ 'c', 'a', 'k', 'e', ' ',
         'p', 'o', 'u', 'n', 'd', ' ',
         's', 't', 'e', 'a', 'l' ]
 
 
 # reverse_words(input)
-reverse_words_in_place(input)
+# reverse_words_in_place(input)
+scratch(input)
